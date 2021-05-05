@@ -2,9 +2,26 @@
 #Roadmap Game
 **Table of Contents**
 
-[TOCM]
-
-[TOC]
+- [mistage-roadmap-game](#mistage-roadmap-game)
+    + [Демо вебсайта проекта](#---------------------)
+  * [Описание проекта](#----------------)
+    + [План вебсайта](#-------------)
+      - [План вебстраниц](#---------------)
+      - [План контента вебсайта](#----------------------)
+      - [План разделов по веб-страницам](#------------------------------)
+  * [Запуск проекта](#--------------)
+    + [Тестирование](#------------)
+    + [Установка и запуск вебсевера:](#-----------------------------)
+      - [setup.sh](#setupsh)
+      - [start.sh](#startsh)
+    + [Readme.txt](#readmetxt)
+    + [setup.sh](#setupsh-1)
+    + [start.sh](#startsh-1)
+    + [Скрипты для Windows](#------------windows)
+    + [winsetup.cmd](#winsetupcmd)
+    + [jsdoc-run.cmd](#jsdoc-runcmd)
+    + [open.site.cmd](#opensitecmd)
+    + [open.docs.cmd](#opendocscmd)
 
 ------------
 
