@@ -1,0 +1,16 @@
+{
+  "name": "MistAgeRoadmap",
+  "version": "1.0.0",
+  "description": "NodeJS webserver with JSDoc and website MistAgeRoadmap",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MistAgeDev",
+  "license": "ISC",
+  "devDependencies": {
+    "jsdoc": "^3.6.6"
+  },
+  "dependencies": {
+    "static-server": "^2.2.1"
+  }
+}

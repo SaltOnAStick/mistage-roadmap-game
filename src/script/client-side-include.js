@@ -1,3 +1,9 @@
+/** 
+ * Replace element
+ * @function
+ * @name replaceElement 
+ * Replace current page (element) to new page by @function @name replaceElement in content space by element URL, if it exist.
+ */
 function replaceElement(el, url, outer, callback) {
    var xmlhttp = new XMLHttpRequest();
 
@@ -26,7 +32,14 @@ function replaceElement(el, url, outer, callback) {
    }
 }
 
-window.onload = function() {
+
+/** 
+ * Element initialization
+ * @function
+ * @name initElements 
+ * Initialize elements by 'div' tag, when window is loading.
+ */
+function initElements () {
 	var elements = document.getElementsByTagName('div'), i;
 	for (i in elements) {
 	        const el = elements[i];
@@ -35,3 +48,5 @@ window.onload = function() {
 		}
 	}
 }
+
+window.onload = initElements;
