@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script src="/script/client-side-include.js"></script>
+    <script src="/script/handlers.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+  <header>
+    Дорожная карта по созданию современных воксельных игр
+  </header>
+
+  <nav id="MENU" onclick="navHandler(event)" >
+
+	<a class="active" href="#road-map">Roadmap</a>
+
+	<hr>
+
+  	<a href="#intro">Введение</a>
+  	<a href="#concept">Обзор</a>
+  	<a href="#engines">Движки</a>
+  	<a href="#planning">Планирование</a>
+    <a href="#implementation">Реализация</a>
+
+  </nav>
+
+  <main id="mainArea">
+	<div data-include="/pages/road-map.html"></div>
+  </main>
+
+  <footer>
+    (c) MistAgeDev, MIREA, 2021
+  </footer>
+</div>
+
+</body>
+
+</html>

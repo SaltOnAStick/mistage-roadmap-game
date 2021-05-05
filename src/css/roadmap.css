@@ -1,0 +1,61 @@
+.content {
+    width: 65%;
+    margin: 1% auto 1vh;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    background-color: #48b2ef;
+    border-radius: 3px;
+}
+
+.roadmap {
+    display: flex;
+    justify-content: center;
+}
+
+.roadmap-img {
+    width: 100%;
+    margin: auto;
+    /* margin-top: 6vh;
+    margin-bottom: 6vh; */
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.4));
+
+}
+
+#stage1:hover .cls-2,
+#stage2:hover .cls-2,
+#stage3:hover .cls-2,
+#stage4:hover .cls-2,
+#stage5:hover .cls-2,
+#stage6:hover .cls-2,
+#stage7:hover .cls-2,
+#stage8:hover .cls-2,
+#stage9:hover .cls-2,
+#stage10:hover .cls-2 {
+    fill: #5e99c2;
+}
+
+#stage1:hover .cls-3,
+#stage2:hover .cls-3,
+#stage3:hover .cls-3,
+#stage4:hover .cls-3,
+#stage5:hover .cls-3,
+#stage6:hover .cls-3,
+#stage7:hover .cls-3,
+#stage8:hover .cls-3,
+#stage9:hover .cls-3,
+#stage10:hover .cls-3  {
+    fill: #42a7e1;
+}
+
+#stage1:hover .cls-5,
+#stage2:hover .cls-5,
+#stage3:hover .cls-5,
+#stage4:hover .cls-5,
+#stage5:hover .cls-5,
+#stage6:hover .cls-5,
+#stage7:hover .cls-5,
+#stage8:hover .cls-5,
+#stage9:hover .cls-5,
+#stage10:hover .cls-5 {
+fill: #398bc6;
+}

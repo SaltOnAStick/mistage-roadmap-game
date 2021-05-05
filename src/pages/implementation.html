@@ -1,0 +1,262 @@
+<div class="page">
+
+    <div class="title">Инструментарий | Варианты реализации</div>
+
+<h1>Последняя незатронутая тема</h1>
+
+<p>В последнем шаге RoadMap речь зайдёт про наиболее важную тему- как создавать и с помощью чего реализовывать. В концепции
+игры был сделан уклон в сторону жанра Песочница, и это значит, что именно с реализации элементов данного жанра стоит
+начать анализ.
+</p>
+
+<h1>Sandbox</h1>
+
+<p>На предыдущем шаге мы выявили 2 основных различия между представителями этого жанра: игры с возможностью строительства и
+игры с полным редактированием мира и, как бы странно не звучало, речь здесь о достаточно обособленных реализациях
+Песочницы в играх. При строительстве создаются новые объекты, а при редактировании мира- изменение существующего
+огромного по меркам уровня объекта. Таким огромным объектом в любой из игр с открытым миром является ландшафт.
+</p>
+
+<p>Для реализации ландшафта в игре были изобретены, как минимум, 2 ныне популярных решения:
+    <ol>
+        <li><b>Mesh</b>. Позволяет редактировать ландшафт только по карте высот (ограничена точностью сетки и малое разнообразие деформаций).
+        Представляет из себя плоскость с возможностью деформирования в 3-м измерении.
+            <div class="image">
+                <img src="images\implementation\SimCity.png" />
+                <div>SimCity - симулятор строительство с возможностью изменения ландшафта по карте высот (<a target="_blank"
+                        href="https://www.ea.com/ru-ru/news/adding-lakes-and-rivers-to-simcity-buildit">источник</a>)
+                </div>
+            </div>
+        </li>
+        <li><b>Voxel</b>. Позволяет редактировать ландшафт во всех измерениях и с любой деформацией (до точности воксельной сетки).
+            <div class="image">
+                <img src="images\implementation\Stone.png" />
+                <div>StoneQuest - воксельная игра на этапе разработки (<a target="_blank"
+                        href="https://stonequest.de">источник</a>)
+                </div>
+            </div>
+        </li>
+    </ol>
+</p>
+
+<h1>Зачем делать игру на основе вокселей</h1>
+
+<p>
+    <ol>
+        <li>Бесконечные возможности по геометрии уровней;</li>
+        <li>Просто и плавно переключаемый уровень детализации в соответствии с нагрузкой на систему;</li>
+        <li>Динамическая геометрия, включая системы частиц;</li>
+        <li>Процедурная генерация уровней;</li>
+        <li>Произвольно разрушаемые уровни;</li>
+        <li>Неограниченные возможности по модификации и построении геометрии в процессе игры;</li>
+        <li>Простая интеграция с физическими движками;</li>
+        <li>Точная обработка коллизий.</li>
+    </ol>
+</p>
+
+<p>Таким образом, воксели являются наиболее удобными для полного редактирования ландшафта в игровом мире.</p>
+
+<h1>Два представителя визуализации вокселей</h1>
+
+<p>
+    <ol>
+        <li><b>Minecraft</b> - самая известная игра последнего десятилетия, как представитель жанра Песочница. В Minecraft на основе
+        воксельной сетки генерируется ландшафт, будто полностью составленный из кубиков. В этой игре кубической визуализацией и
+        воксельной сеткой ограничено всё, что остаётся удобным для взаимодействия игрока с окружением в игровом процессе. О чём
+        некоторые могут не догадываться, так это о том, что многие статичные объекты, которые визуально можно причислить к
+        ландшафту и остальному единому с ним окружению (а в этой игре все подобные объекты составляют одно целое) - это объекты
+        класса entity, т.е. какой-нибудь условный стенд для брони обладает теми же свойствами, что и подвижные обитатели
+        игрового мира.
+            <div class="image">
+                <img src="images\implementation\Minecraft.png" />
+                <div>Minecraft- самая известная игра жанра Песочница (<a target="_blank"
+                        href="http://www.d1softballnews.com/minecraft-adds-support-for-graphics-ray-tracing-with-red-dragon/">источник</a>)
+                </div>
+            </div>
+        </li>
+        <li><b>No Man’s Sky</b> - игра в жанре космический приключенческий боевик с открытым миром и элементами выживания. Ландшафт
+        планет генерируется на воксельной сетке, что позволяет его деформировать. Визуализация вокселя гладкая, а не кубическая,
+        как в Minecraft.
+            <div class="image">
+                <img src="images\implementation\Sky.png" />
+                <div>No Man’s Sky- игра с возможностью деформации ландшафта планет (<a target="_blank"
+                        href="https://store.steampowered.com/app/275850/No_Mans_Sky/?l=russian">источник</a>)
+                </div>
+            </div>
+        </li>
+    </ol>
+</p>
+
+<h1>Детали и алгоритмы</h1>
+
+<p>Для оптимизации хранения вокселей используют Октодерево. Октодерево- это тип древовидной структуры данных, в которой у
+каждого внутреннего узла ровно восемь «потомков».
+</p>
+
+<div class="image">
+    <img src="images\implementation\Octotree.png" />
+    <div>Пример использования октодерева (<a target="_blank"
+            href="https://ru.wikipedia.org/wiki/%D0%9E%D0%BA%D1%82%D0%BE%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE">источник</a>)
+    </div>
+</div>
+
+<p>Алгоритмы некубической визуализации вокселей (как в No Man’s Sky):
+    <ol>
+        <li><b>Marching cubes</b> - один из самых популярных и первых алгоритмов визуализации вокселей. Многие другие алгоритмы- это его модификации. У
+        алгоритма есть недочёт в качестве некоторых однозначно нечитаемых комбинаций вершин.
+            <div class="image">
+                <img src="images\implementation\Marching.png" />
+                <div>Пример визуализации 15 основных комбинаций вершин алгоритма Marching cubes (<a target="_blank"
+                        href="https://ru.wikipedia.org/wiki/Marching_cubes">источник</a>)
+                </div>
+            </div>
+        </li>
+        <li><b>Dual contouring</b> - алгоритм, решающий нечитаемые однозначно комбинации вершин в Marching cubes, но требующий больше параметров при
+        генерации меша.
+            <div class="image">
+                <img src="images\implementation\Dual.png" />
+                <div>Пример визуализации вокселей с помощью Dual contouring (<a target="_blank"
+                        href="https://habr.com/ru/post/358658/">источник</a>)
+                </div>
+            </div>
+        </li>
+        <li><b>Transvoxel</b> - алгоритм, улучшающий Marching cubes, вводя концепцию “переходной ячейки”.
+            <div class="image">
+                <img src="images\implementation\Transvoxel.png" />
+                <div>73 класса алгоритма Transvoxel, которые способны обработать 512 комбинаций (<a target="_blank"
+                        href="https://transvoxel.org/">источник</a>)
+                </div>
+            </div>
+        </li>
+    </ol>
+</p>
+
+<h1>Инструменты</h1>
+
+<p>Для работы с вокселями можно использовать следующие инструменты:
+<ol>
+    <li><b>Voxel Planet</b> - демонстрационный проект сфереческой генерации воксельной сетки, разработанный на Unity.
+        <div class="image">
+            <img src="images\implementation\VoxelPlanet.png" />
+            <div>Voxel Planet (<a target="_blank"
+                    href=https://jordanpeck.me/2015/02/voxel-planet/">источник</a>)
+            </div>
+        </div>
+    </li>
+    <li><b>MagicaVoxel</b> - удобный инструмент для создания воксельноподобных тайлов.
+        <div class="image">
+            <img src="images\implementation\MagicaVoxel.png" />
+            <div>MagicaVoxel (<a target="_blank"
+                    href="https://ephtracy.github.io/">источник</a>)
+            </div>
+        </div>
+    </li>
+    <li><b>Three.js</b> - алгоритм, улучшающий Marching cubes, вводя концепцию “переходной ячейки”.
+        <div class="image">
+            <img src="images\implementation\ThreeJS.png" />
+            <div>Three.js (<a target="_blank"
+                    href="https://threejsfundamentals.org/threejs/lessons/threejs-voxel-geometry.html">источник</a>)
+            </div>
+        </div>
+    </li>
+    <li>Библиотека для переноса моделей из MagicaVoxel в Three.js.
+        <div class="image">
+            <img src="images\implementation\Library.png" />
+            <div>Библиотека-конвертор (<a target="_blank"
+                    href="https://luciopaiva.com/magicavoxel-threejs-howto/">источник</a>)
+            </div>
+        </div>
+    </li>
+    <li><b>Voxel-mesh</b> - генератор меша Tree.js из формата хранения вокселей.
+        <div class="image">
+            <img src="images\implementation\voxel-mesh.png" />
+            <div>Voxel-mesh (<a target="_blank" href="https://github.com/maxogden/voxel-mesh">источник</a>)
+            </div>
+        </div>
+    </li>
+</ol>
+</p>
+
+<h1>Сложности при работе с вокселями</h1>
+
+<p>Можно выделить следующие сложности, которые могут возникнуть при работе с вокселями:
+    <ol>
+        <li>Текстурирование</li>
+        <li>Сглаживание</li>
+        <li>Нагрузка на видеосистему</li>
+        <li>Оптимизация производительности путем объединения вокселей и удаление поглощенных граней</li>
+        <li>Дальнейшая оптимизация с использованием шейдеров</li>
+        <li>Интеграция с другими полигональными игровыми движками</li>
+    </ol>
+</p>
+
+<h1>Пару слов про движок</h1>
+
+<p>На одном из шагов RoadMap мы обсуждали игровые движки, из которых выделили Unity3D и Unreal Engine, но существуют ли
+воксельные игры, сделанные с их помощью?
+</p>
+
+<p>На Unity было разработано множество воксельных игр, многие из которых копируют Minecraft. Наиболее известные воксельные
+игры на Unity:
+    <ol>
+        <li><b>7 Days to Die</b> - воксельная игра в мире зомбиапокалипсиса.
+            <div class="image">
+                <img src="images\implementation\7Days.png" />
+                <div>7 Days to Die (<a target="_blank"
+                        href="https://store.steampowered.com/app/251570/7_Days_to_Die/">источник</a>)
+                </div>
+            </div>
+        </li>
+        <li><b>Survivalcraft</b> - одна из наиболее популярных Minecraft копий, вышедших на мобильных устройствах.
+            <div class="image">
+                <img src="images\implementation\Survivalcraft.png" />
+                <div>Survivalcraft (<a target="_blank" href="https://www.amazon.com/Candy-Rufus-Games-Survivalcraft-Demo/dp/B009ZXT4BY">источник</a>)
+                </div>
+            </div>
+        </li>
+    </ol>
+</p>
+
+<p>На Unreal Engine были разработаны следующие игры:
+<ol>
+    <li><b>Infinite Voxel World</b> - клон Minecraft. Красивая, но незавершённая игра.
+        <div class="image">
+            <img src="images\implementation\Infinite.png" />
+            <div>Infinite Voxel World (<a target="_blank" href="https://forums.unrealengine.com/community/work-in-progress/74803-i-ve-created-an-infinite-voxel-world-similar-to-minecraft">источник</a>)
+            </div>
+        </div>
+    </li>
+    <li><b>Stellar Overload</b> - воксельная игра с космическими приключениями.
+        <div class="image">
+            <img src="images\implementation\Stellar.png" />
+            <div>Stellar Overload (<a target="_blank"
+                    href="https://store.steampowered.com/app/397150/Stellar_Overload/">источник</a>)
+            </div>
+        </div>
+    </li>
+</ol>
+</p>
+
+<p>Если речь зашла про движки, то стоит добавить, что для них уже существуют готовые библиотки, поддерживающие воксели.
+Наиболее популярная библиотека для Unreal Engine - Voxel Plugin. Это мощный инструмент, который поддерживает разные
+алгоритмы визуализации вокселей, поддерживает многопользовательский режим.
+</p>
+
+<div class="image">
+    <img src="images\implementation\VoxelPlugIn.png" />
+    <div>Voxel Plugin (<a target="_blank" href="https://voxelplugin.com/">источник</a>)
+    </div>
+</div>
+
+<h1>Конец RoadMap</h1>
+
+<p>Это был последний шаг в моей RoadMap по ознакомлению с контентом для создания своей игры. Теперь нам известны жанры,
+движки, полезные инструменты и библиотеки, алгоритмы визуализации вокселей, примеры популярных проектов и актуальные
+направления в разработке игр.
+</p>
+
+<p>Теперь дело осталось за малым- пора приступить к созданию самой игры и применить весь тот багаж новых знаний, который
+был получен из шагов “RoadMap по созданию игр”.
+</p>
+
+</div>
