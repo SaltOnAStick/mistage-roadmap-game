@@ -16,9 +16,10 @@
       - [setup.sh](#setupsh)
       - [start.sh](#startsh)
     + [Readme.txt](#readmetxt)
+  * [Скрипты установки и запуска проекта](#toc11)
     + [setup.sh](#setupsh-1)
     + [start.sh](#startsh-1)
-    + [Скрипты для Windows](#toc11)
+    + [Скрипты для Windows](#toc12)
     + [winsetup.cmd](#winsetupcmd)
     + [jsdoc-run.cmd](#jsdoc-runcmd)
     + [open.site.cmd](#opensitecmd)
@@ -225,6 +226,7 @@
     ###########################
 
 ------------
+<a name="toc11"></a>
 ## Скрипты установки и запуска проекта
 <a name="script-setup.sh"></a>
 ### setup.sh
@@ -415,7 +417,7 @@ echo "### Good! Buy! ###"
 ```
 
 ------------
-<a name="toc11"></a>
+<a name="toc12"></a>
 ### Скрипты для Windows
 Эти скрипты запускает *setup.sh* на Windows, но также их можно запускать последовательно, как это описано в файле *readme.txt*.
 
